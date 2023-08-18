@@ -1,0 +1,37 @@
+.btn-search {
+    background: #005daa;
+    color: white;
+}
+.btn-search:hover {
+    background: #d1ecff;
+    color: black;
+}
+.btn-delete {
+    background: #005daa;
+    color: white;
+    display: inline-flex;
+    float: right;
+    margin: 10px;
+    padding: 6px;
+}
+.btn-delete:hover {
+    background: #d1ecff;
+    color: black;
+}
+.btn-search>a {
+    color: white;
+}
+.btn-search>a:hover {
+    color: black;
+}
+.img-center {
+    background-image: url("../background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+.img-center>span {
+    margin-bottom: auto;
+    margin-top: auto;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<div th:replace="~{layout::head}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-center text-center" style="height: 500px">
+                <span style="font-size: 100px;font-family: 'Poor Story', cursive;">News</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-top: 20px">
+    <!--<div class="list-project">-->
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+<!--            <div class="header-content" style="padding-top: 20px">-->
+<!--                <button type="button" class="btn-search btn"  data-bs-toggle="modal" data-bs-target="#addBusiness">-->
+<!--                    <a th:href="@{/project/create}" style="text-decoration: none">Create Project</a>-->
+<!--                </button>-->
+<!--                <div class="input-group" style="width: auto; float: right">-->
+<!--                    <form action="/project" method="get">-->
+<!--                        <div class="form-outline">-->
+<!--                            <input style="display: inline-block; width: auto" type="search" id="form1" class="form-control" name="searchItem" />-->
+<!--                            <button class="btn-search btn">Search</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <table style="background-color: #f3f3f3; width: 100%; height: auto">
+                <tr>
+                    <td>
+                        <span style="font-size: 17px; font-weight: bold " th:text="${news.newsId}" hidden></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%">Article: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.newsTitle}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.category.categoryName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Content: </td>
+                    <td style="font-size: 17px;font-style: italic; font-weight: bold ">
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.newsContent}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of publish: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.date}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Interviewer: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.interview}"></span>
+                    </td>
+                </tr>
+                <hr>
+            </table>
+            <button type="reset" class="btn btn-primary" style="text-decoration: white">
+                <a th:href="@{/news}" >Close</a>
+            </button>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

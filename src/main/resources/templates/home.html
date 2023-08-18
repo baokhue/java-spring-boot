@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<body>
+<div th:replace="~{layout::head}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-center text-center" style="height: 500px">
+                <span style="font-size: 100px;font-family: 'Poor Story', cursive;">News</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-top: 20px">
+    <!--<div class="list-project">-->
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <div class="header-content" style="padding-top: 20px">
+                <button type="button" class="btn-search btn"  data-bs-toggle="modal" data-bs-target="#addBusiness">
+                    <a th:href="@{/news/create}" style="text-decoration: none">Create News</a>
+                </button>
+                <div class="input-group" style="width: auto; float: right">
+                    <form action="/news" method="get">
+                        <div class="form-outline">
+                            <input style="display: inline-block; width: auto" type="search" id="form1" class="form-control" name="searchItem" />
+                            <button class="btn-search btn">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Alert success-->
+            <div th:class="${'alert alert-' + status + ' alert-dismissible fade show'}" role="alert">
+                <span th:text="${mess}"></span>
+            </div>
+            <!--End alert success-->
+            <table th:each="news,status: ${newsPages}" style="background-color: #f3f3f3; width: 100%; height: auto">
+                <tr>
+                    <td>
+                        <span style="font-size: 17px; font-weight: bold " th:text="${news.newsId}" hidden></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.category.categoryName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%">Category: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.category.categoryName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%">Article: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.newsTitle}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Content: </td>
+                    <td style="font-size: 17px;font-style: italic; font-weight: bold ">
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.newsContent}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of publish: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.date}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Interviewer: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${news.interview}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="button-cr-de" style="display: inline-block; float: right">
+                            <button type="button" class="btn-delete btn"  data-bs-toggle="modal" data-bs-target="#deleteProject" th:data-bs-id="${news.newsId}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn-search btn">
+                                <a  th:href="@{/news/detail/__${news.newsId}__}">Detail</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <hr>
+            </table>
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" th:if="${newsPages.hasPrevious()}" th:href="@{/news(page=${newsPages.number-1},searchItem=${searchItem})}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" th:text="${newsPages.number+1}"></a></li>
+                    <li class="page-item"><a class="page-link" >/</a></li>
+                    <li class="page-item"><a class="page-link" th:text="${newsPages.totalPages}"></a></li>
+                    <li class="page-item"><a class="page-link" th:if="${newsPages.hasNext()}" th:href="@{/news(page=${newsPages.number+1},searchItem=${searchItem})}">Next</a></li>
+                </ul>
+            </nav>
+            <!-- End Pagination -->
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<!--Delete-->
+<div class="modal fade" id="deleteProject" tabindex="-1" aria-labelledby="deleteProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProjectModalLabel">Blog Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${news}" th:action="@{/news/delete}" method="post">
+                    <div class="mb-3">
+                        <input type="number" class="form-control" th:field="${news.newsId}" th:id="deleteId" hidden/>
+                        <span>Are you sure?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-create" value="OK">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End delete-->
+</body>
+<script>
+    var deleteProject = document.getElementById("deleteProject");
+    deleteProject.addEventListener("show.bs.modal", function (event) {
+
+        var button = event.relatedTarget;
+
+        var deleteId = button.getAttribute("data-bs-id");
+
+        var modalBodyInputId = deleteProject.querySelector("#deleteId");
+
+        modalBodyInputId.value = deleteId;
+    });
+</script>
+</html>

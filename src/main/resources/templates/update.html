@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .img-create {
+      background-image: url("../background.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="~{layout::head}"></div>
+<div class="container-fluid">
+  <div class="img-create">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <form th:object="${project}" th:action="@{/project/update}" method="post">
+          <div class="form-add" style="background: rgba(129, 190, 255, 0.6); border-radius: 30px; margin: 50px">
+            <div class="main-form-add" style="padding: 20px">
+              <input type="hidden" th:field="${project.projectId}">
+              <div class="mb-3">
+                <label for="projectId" class="form-label">Project ID</label>
+                <input type="text" class="form-control" id="projectId" th:field="${project.projectCode}" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="businessName" class="form-label">Name of Business</label>
+                <select name="businessName" id="businessName" class="form-select" th:field="${project.business.businessId}">
+                  <option th:each="b, status: ${businessService}"
+                          th:value="${b.businessId}"
+                          th:text="${b.businessName}">
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="projectName" class="form-label">Name of Project</label>
+                <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp" th:field="${project.projectName}">
+              </div>
+              <div class="mb-3">
+                <label for="cost" class="form-label">Cost</label>
+                <input type="text" class="form-control" id="cost" aria-describedby="emailHelp" th:field="${project.projectCost}">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" aria-describedby="emailHelp" th:field="${project.projectDescription}">
+              </div>
+              <div class="mb-3">
+                <label for="month" class="form-label">Time of Introduction</label>
+                <input type="text" class="form-control" id="month" aria-describedby="emailHelp" th:field="${project.signInMonth}">
+              </div>
+              <div class="mb-3">
+                <label for="day" class="form-label">Time of Signing up</label>
+                <input type="date" class="form-control" id="day" th:field="${project.signInDate}"/>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-primary">
+                <a th:href="@{/project}">Cancel</a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
